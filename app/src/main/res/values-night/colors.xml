@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors (Dark) -->
+    <color name="primary">#B2C6D5</color>
+    <color name="onPrimary">#23272F</color>
+    <color name="primaryContainer">#7F8CAA</color>
+    <color name="onPrimaryContainer">#F5F7FA</color>
+
+    <!-- Secondary Colors (Dark) -->
+    <color name="secondary">#AEC8A4</color>
+    <color name="onSecondary">#23272F</color>
+    <color name="secondaryContainer">#99BC85</color>
+    <color name="onSecondaryContainer">#F5F7FA</color>
+
+    <!-- Tertiary Colors (Dark) -->
+    <color name="tertiary">#C599B6</color>
+    <color name="onTertiary">#23272F</color>
+    <color name="tertiaryContainer">#A35C7A</color>
+    <color name="onTertiaryContainer">#F5F7FA</color>
+
+    <!-- Additional Essential Colors (Dark) -->
+    <color name="surface">#2C313A</color>
+    <color name="onSurface">#F5F7FA</color>
+    <color name="background">#23272F</color>
+    <color name="onBackground">#F5F7FA</color>
+    <color name="error">#FE7743</color>
+
+    <!-- Theme Required Colors (Dark) -->
+    <color name="surfaceVariant">#3F4A5A</color>
+    <color name="onSurfaceVariant">#B2C6D5</color>
+    <color name="surfaceContainer">#23272F</color>
+    <color name="onError">#23272F</color>
+    <color name="errorContainer">#FE7743</color>
+    <color name="onErrorContainer">#F5F7FA</color>
+    <color name="outline">#5F6A7D</color>
+    <color name="outlineVariant">#3F4A5A</color>
+</resources> 
