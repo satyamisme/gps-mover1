@@ -19,7 +19,7 @@
     <color name="onTertiaryContainer">#A35C7A</color>
 
     <!-- Additional Essential Colors -->
-    <color name="surface">#F6F7FA</color>
+    <color name="surface">#F2F3F6</color>
     <color name="onSurface">#3F4A5A</color>
     <color name="background">#FFFFFF</color>
     <color name="onBackground">#3F4A5A</color>

@@ -53,7 +53,7 @@
         app:itemIconTint="?attr/colorOnSurface"
         app:itemTextColor="?attr/colorOnSurface"
         app:labelVisibilityMode="labeled"
-        app:itemRippleColor="@android:color/transparent"
+
         app:itemActiveIndicatorStyle="@style/NoActiveIndicator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

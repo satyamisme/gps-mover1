@@ -42,6 +42,24 @@ class FavoritesPage @JvmOverloads constructor(
 
         recyclerView.layoutManager = LinearLayoutManager(context)
         
+        // Add 3dp spacing between items
+        recyclerView.addItemDecoration(object : androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: android.graphics.Rect,
+                view: View,
+                parent: androidx.recyclerview.widget.RecyclerView,
+                state: androidx.recyclerview.widget.RecyclerView.State
+            ) {
+                val position = parent.getChildAdapterPosition(view)
+                if (position != androidx.recyclerview.widget.RecyclerView.NO_POSITION) {
+                    // Add 3dp bottom margin to all items except the last one
+                    if (position < parent.adapter?.itemCount?.minus(1) ?: 0) {
+                        outRect.bottom = (3 * context.resources.displayMetrics.density).toInt()
+                    }
+                }
+            }
+        })
+        
         // Create the adapter first
         favListAdapter = FavListAdapter()
         recyclerView.adapter = favListAdapter
@@ -69,7 +87,7 @@ class FavoritesPage @JvmOverloads constructor(
             viewModel?.updateFavouritesOrder(updatedFavorites)
         }
         
-        android.util.Log.d("FavoritesPage", "RecyclerView setup completed with drag and drop")
+        android.util.Log.d("FavoritesPage", "RecyclerView setup completed with drag and drop and 3dp spacing")
     }
 
     fun setViewModel(viewModel: MainViewModel) {

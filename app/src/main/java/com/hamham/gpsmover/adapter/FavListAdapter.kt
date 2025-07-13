@@ -61,8 +61,6 @@ class FavListAdapter : RecyclerView.Adapter<FavListAdapter.ViewHolder>() {
                     onItemClick?.invoke(items[pos])
                 }
             }
-            // Enable Ripple effect on the item
-            itemView.background = itemView.context.obtainStyledAttributes(intArrayOf(android.R.attr.selectableItemBackground)).getDrawable(0)
         }
 
         fun bind(favorite: Favourite){
@@ -85,18 +83,7 @@ class FavListAdapter : RecyclerView.Adapter<FavListAdapter.ViewHolder>() {
         val item = items[position]
         holder.bind(item)
 
-        // Use resolveAttribute to get theme colors correctly
-        val context = holder.itemView.context
-        val colorSurface = TypedValue().let {
-            context.theme.resolveAttribute(com.google.android.material.R.attr.colorSurface, it, true)
-            ContextCompat.getColor(context, it.resourceId)
-        }
-        val colorSurfaceVariant = TypedValue().let {
-            context.theme.resolveAttribute(com.google.android.material.R.attr.colorSurfaceVariant, it, true)
-            ContextCompat.getColor(context, it.resourceId)
-        }
-        val color = if (position % 2 == 0) colorSurface else colorSurfaceVariant
-        holder.itemView.setBackgroundColor(color)
+
 
         // Enable drag from anywhere in the entire item
         holder.itemView.setOnLongClickListener { view ->

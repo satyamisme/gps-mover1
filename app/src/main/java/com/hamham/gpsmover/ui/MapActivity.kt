@@ -114,8 +114,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         // Initialize favorites page setup immediately
         setupFavoritesPage()
         
-        // Set the correct tab selection to match the visible page (Map)
-        // This is now handled by navigateToMapPage() in setupBottomNavigation()
+        // Ensure the correct page is shown based on currentPage
+        when (currentPage) {
+            "map" -> showMapPage()
+            "favorites" -> showFavoritesPage()
+            "settings" -> showSettingsPage()
+            else -> showMapPage()
+        }
     }
 
     override fun onPause() {
@@ -173,8 +178,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
                 else -> false
             }
         }
-        // Ensure the map tab is selected by default (programmatically only)
-        navigateToMapPage()
+        
+        // Set the correct tab selection based on current page
+        when (currentPage) {
+            "map" -> bottomNavigation.selectedItemId = R.id.navigation_map
+            "favorites" -> bottomNavigation.selectedItemId = R.id.navigation_favorites
+            "settings" -> bottomNavigation.selectedItemId = R.id.navigation_settings
+            else -> bottomNavigation.selectedItemId = R.id.navigation_map
+        }
     }
 
     private fun navigateToMapPage() {
@@ -204,6 +215,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
 
 
     private fun showMapPage() {
+        currentPage = "map"
         findViewById<View>(R.id.map_container).visibility = View.VISIBLE
         findViewById<View>(R.id.favorites_page).visibility = View.GONE
         findViewById<View>(R.id.settings_page).visibility = View.GONE
@@ -219,6 +231,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     }
 
     private fun showFavoritesPage() {
+        currentPage = "favorites"
         findViewById<View>(R.id.map_container).visibility = View.GONE
         findViewById<View>(R.id.favorites_page).visibility = View.VISIBLE
         findViewById<View>(R.id.settings_page).visibility = View.GONE
@@ -234,6 +247,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     }
 
     private fun showSettingsPage() {
+        currentPage = "settings"
         findViewById<View>(R.id.map_container).visibility = View.GONE
         findViewById<View>(R.id.favorites_page).visibility = View.GONE
         findViewById<View>(R.id.settings_page).visibility = View.VISIBLE
@@ -249,6 +263,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     }
 
     private var isFavoritesPageInitialized = false
+    private var currentPage = "map" // Track current page: "map", "favorites", "settings"
 
     private fun setupFavoritesPage() {
         if (isFavoritesPageInitialized) {
@@ -262,6 +277,25 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         val recyclerView = favoritesPage.findViewById<RecyclerView>(R.id.recyclerView)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
+        
+        // Add 3dp spacing between items
+        recyclerView.addItemDecoration(object : androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: android.graphics.Rect,
+                view: View,
+                parent: androidx.recyclerview.widget.RecyclerView,
+                state: androidx.recyclerview.widget.RecyclerView.State
+            ) {
+                val position = parent.getChildAdapterPosition(view)
+                if (position != androidx.recyclerview.widget.RecyclerView.NO_POSITION) {
+                    // Add 3dp bottom margin to all items except the last one
+                    if (position < parent.adapter?.itemCount?.minus(1) ?: 0) {
+                        outRect.bottom = (3 * resources.displayMetrics.density).toInt()
+                    }
+                }
+            }
+        })
+        
         recyclerView.adapter = favListAdapter
 
         // Setup drag and drop for MapActivity
@@ -272,40 +306,48 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         Log.d("MapActivity", "ItemTouchHelper attached to RecyclerView")
 
         favListAdapter.onItemClick = { favourite ->
-            // Remove haptic feedback completely here
-            favourite.let {
-                lat = it.lat!!
-                lon = it.lng!!
-                val selectedLatLng = LatLng(lat, lon)
-                mLatLng = selectedLatLng
-                // Activate fake location immediately
-                viewModel.update(true, lat, lon)
-                // Update marker
-                mMarker?.position = selectedLatLng
-                mMarker?.isVisible = true
-                // Move camera to location
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(selectedLatLng, 12.0f))
-                // Update FAB buttons state
+            // Add haptic feedback to confirm the click
+            val view = findViewById<View>(R.id.favorites_page)
+            view.performHapticClick()
+            
+            // Add a very short delay to show the clicked item, then process and navigate
+            lifecycleScope.launch {
+                delay(200) // 200ms delay to show the clicked item
+                
+                // Process the favorite selection
+                favourite.let {
+                    lat = it.lat!!
+                    lon = it.lng!!
+                    val selectedLatLng = LatLng(lat, lon)
+                    mLatLng = selectedLatLng
+                    // Activate fake location immediately
+                    viewModel.update(true, lat, lon)
+                    // Update marker
+                    mMarker?.position = selectedLatLng
+                    mMarker?.isVisible = true
+                    // Move camera to location
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(selectedLatLng, 12.0f))
+                    // Update FAB buttons state
+                    val mapContainer = findViewById<View>(R.id.map_container)
+                    mapContainer.findViewById<View>(R.id.start).visibility = View.GONE
+                    mapContainer.findViewById<View>(R.id.stop).visibility = View.VISIBLE
+                }
+                
+                // Switch back to map page
+                navigateToMapPage()
+                
+                // Show notification and update FAB visibility after navigation
+                delay(50) // Small delay to ensure navigation is complete
                 val mapContainer = findViewById<View>(R.id.map_container)
                 mapContainer.findViewById<View>(R.id.start).visibility = View.GONE
                 mapContainer.findViewById<View>(R.id.stop).visibility = View.VISIBLE
+                
                 // Show notification
-                lifecycleScope.launch {
-                    mLatLng?.getAddress(this@MapActivity)?.let { address ->
-                        address.collect { value ->
-                            showStartNotification(value)
-                        }
+                mLatLng?.getAddress(this@MapActivity)?.let { address ->
+                    address.collect { value ->
+                        showStartNotification(value)
                     }
                 }
-            }
-            // Switch back to map page and ensure FABs show correct state
-            navigateToMapPage()
-            // Force update FAB visibility after navigation
-            lifecycleScope.launch {
-                delay(100) // Small delay to ensure navigation is complete
-                val mapContainer = findViewById<View>(R.id.map_container)
-                mapContainer.findViewById<View>(R.id.start).visibility = View.GONE
-                mapContainer.findViewById<View>(R.id.stop).visibility = View.VISIBLE
             }
         }
 
