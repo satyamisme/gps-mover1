@@ -1,16 +1,7 @@
-# GPS Mover
+## GPS Mover
 
-**Version:** 1.0.0  
-**Package:** `com.hamham.gpsmover`  
-**Minimum Android Version:** Android 8.1 (API 27)  
-**Target/Compile SDK:** Android 14 (API 34)  
-**Design System:** Material 3 (Material You) with full light/dark theme support and modern UI/UX.
 
----
-
-## Overview
-
-**GPS Mover** is an advanced Android application that allows users to set and spoof their device location without enabling mock location. It is designed for use with Xposed/LSPosed modules and provides a modern, user-friendly interface for managing favorite locations, controlling location spoofing, and customizing app behavior.
+An advanced Android application that allows users to set and spoof their device location without enabling mock location. It is designed for use with Xposed/LSPosed modules and provides a modern, user-friendly interface for managing favorite locations, controlling location spoofing, and customizing app behavior.
 
 ---
 
