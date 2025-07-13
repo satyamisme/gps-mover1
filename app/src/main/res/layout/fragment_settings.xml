@@ -42,9 +42,9 @@
 
         <ImageView
             android:id="@+id/settings_developer_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:padding="10dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="0dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/info_24"
             android:contentDescription="Developer"
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:text="@string/preference_category_general"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-            android:textColor="?attr/colorPrimary"
+            android:textColor="?attr/colorOnSecondaryContainer"
             android:layout_marginBottom="16dp" />
 
         <!-- General Settings Container with rounded corners -->
@@ -102,7 +102,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_baseline_dark_mode_24"
-                        app:tint="?attr/colorOnSurfaceVariant"
+                        app:tint="?attr/colorPrimary"
                         android:layout_marginEnd="16dp" />
 
                     <LinearLayout
@@ -133,7 +133,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/select"
-                        android:textColor="?attr/colorPrimary" />
+                        android:textColor="?attr/colorTertiary" />
                 </LinearLayout>
 
                 <!-- Light border between Dark Theme and Map Type -->
@@ -156,7 +156,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_baseline_layers_24"
-                        app:tint="?attr/colorOnSurfaceVariant"
+                        app:tint="?attr/colorPrimary"
                         android:layout_marginEnd="16dp" />
 
                     <LinearLayout
@@ -187,7 +187,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/select"
-                        android:textColor="?attr/colorPrimary" />
+                        android:textColor="?attr/colorTertiary" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -198,7 +198,7 @@
             android:layout_height="wrap_content"
             android:text="@string/xposed"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-            android:textColor="?attr/colorPrimary"
+            android:textColor="?attr/colorOnSecondaryContainer"
             android:layout_marginBottom="16dp" />
 
         <!-- Xposed Settings Container with rounded corners -->
@@ -230,7 +230,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_baseline_code_24"
-                        app:tint="?attr/colorOnSurfaceVariant"
+                        app:tint="?attr/colorPrimary"
                         android:layout_marginEnd="16dp" />
 
                     <LinearLayout
@@ -249,7 +249,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Hook system for better location set"
+                            android:text="For better location set"
                             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                             android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_marginTop="2dp" />
@@ -283,7 +283,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_baseline_gps_fixed_24"
-                        app:tint="?attr/colorOnSurfaceVariant"
+                        app:tint="?attr/colorPrimary"
                         android:layout_marginEnd="16dp" />
 
                     <LinearLayout
@@ -314,7 +314,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/edit"
-                        android:textColor="?attr/colorPrimary" />
+                        android:textColor="?attr/colorTertiary" />
                 </LinearLayout>
 
                 <!-- Light border between Accuracy and Random Position -->
@@ -337,7 +337,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_baseline_shuffle_24"
-                        app:tint="?attr/colorOnSurfaceVariant"
+                        app:tint="?attr/colorPrimary"
                         android:layout_marginEnd="16dp" />
 
                     <LinearLayout
@@ -368,7 +368,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/edit"
-                        android:textColor="?attr/colorPrimary" />
+                        android:textColor="?attr/colorTertiary" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
