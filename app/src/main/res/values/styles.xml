@@ -2,17 +2,23 @@
 <resources>
     <style name="FabRounded2dp" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">15dp</item>
+        <item name="cornerSize">16dp</item>
     </style>
     
     <style name="BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
-        <item name="itemIconSize">25dp</item>
-        <item name="itemPaddingTop">8dp</item>
-        <item name="itemPaddingBottom">8dp</item>
+        <item name="itemIconSize">26dp</item>
+        <item name="itemPaddingTop">10dp</item>
+        <item name="itemPaddingBottom">10dp</item>
+        <item name="itemRippleColor">@color/bottom_nav_ripple</item>
+        <item name="itemIconTint">@color/bottom_nav_item_color_dark_background</item>
+        <item name="itemTextColor">@color/bottom_nav_item_color_dark_background</item>
+        <item name="itemBackground">@drawable/bottom_nav_item_background_ocean</item>
     </style>
 
     <style name="FavoritesHeaderTitle" parent="TextAppearance.Material3.TitleLarge">
-        <item name="android:textSize">21sp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/onSurface</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- Circle Image View Style -->
@@ -25,6 +31,51 @@
         <item name="android:color">@android:color/transparent</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:alpha">0</item>
+    </style>
+
+    <!-- Modern Card Style -->
+    <style name="ModernCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="strokeColor">@color/card_stroke</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- Modern Button Style -->
+    <style name="ModernButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/onPrimary</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Modern Text Style -->
+    <style name="ModernText" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/onSurface</item>
+    </style>
+
+    <!-- Ocean Theme Styles -->
+    <style name="OceanCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <item name="cardElevation">6dp</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="strokeColor">@color/card_stroke</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="OceanButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/onPrimary</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Gradient Text Style -->
+    <style name="GradientText" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources> 

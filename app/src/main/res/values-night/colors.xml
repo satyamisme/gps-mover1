@@ -1,37 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Colors (Dark) -->
-    <color name="primary">#B2C6D5</color>
-    <color name="onPrimary">#23272F</color>
-    <color name="primaryContainer">#7F8CAA</color>
-    <color name="onPrimaryContainer">#F5F7FA</color>
+    <!-- Modern Primary Colors (Dark) - Ocean Blue -->
+    <color name="primary">#38BDF8</color>
+    <color name="onPrimary">#0C4A6E</color>
+    <color name="primaryContainer">#0369A1</color>
+    <color name="onPrimaryContainer">#E0F2FE</color>
 
-    <!-- Secondary Colors (Dark) -->
-    <color name="secondary">#AEC8A4</color>
-    <color name="onSecondary">#23272F</color>
-    <color name="secondaryContainer">#99BC85</color>
-    <color name="onSecondaryContainer">#F5F7FA</color>
+    <!-- Modern Secondary Colors (Dark) - Coral Orange -->
+    <color name="secondary">#FB923C</color>
+    <color name="onSecondary">#9A3412</color>
+    <color name="secondaryContainer">#EA580C</color>
+    <color name="onSecondaryContainer">#FED7AA</color>
 
-    <!-- Tertiary Colors (Dark) -->
-    <color name="tertiary">#C599B6</color>
-    <color name="onTertiary">#23272F</color>
-    <color name="tertiaryContainer">#A35C7A</color>
-    <color name="onTertiaryContainer">#F5F7FA</color>
+    <!-- Modern Tertiary Colors (Dark) - Mint Green -->
+    <color name="tertiary">#34D399</color>
+    <color name="onTertiary">#064E3B</color>
+    <color name="tertiaryContainer">#059669</color>
+    <color name="onTertiaryContainer">#D1FAE5</color>
 
-    <!-- Additional Essential Colors (Dark) -->
-    <color name="surface">#2C313A</color>
-    <color name="onSurface">#F5F7FA</color>
-    <color name="background">#23272F</color>
-    <color name="onBackground">#F5F7FA</color>
-    <color name="error">#FE7743</color>
+    <!-- Modern Surface Colors (Dark) -->
+    <color name="surface">#0F172A</color>
+    <color name="onSurface">#F8FAFC</color>
+    <color name="background">#020617</color>
+    <color name="onBackground">#F8FAFC</color>
+    <color name="error">#F87171</color>
 
-    <!-- Theme Required Colors (Dark) -->
-    <color name="surfaceVariant">#3F4A5A</color>
-    <color name="onSurfaceVariant">#B2C6D5</color>
-    <color name="surfaceContainer">#23272F</color>
-    <color name="onError">#23272F</color>
-    <color name="errorContainer">#FE7743</color>
-    <color name="onErrorContainer">#F5F7FA</color>
-    <color name="outline">#5F6A7D</color>
-    <color name="outlineVariant">#3F4A5A</color>
+    <!-- Modern Theme Required Colors (Dark) -->
+    <color name="surfaceVariant">#1E293B</color>
+    <color name="onSurfaceVariant">#CBD5E1</color>
+    <color name="surfaceContainer">#0F172A</color>
+    <color name="onError">#020617</color>
+    <color name="errorContainer">#7F1D1D</color>
+    <color name="onErrorContainer">#FEE2E2</color>
+    <color name="outline">#475569</color>
+    <color name="outlineVariant">#1E293B</color>
+
+    <!-- Additional Modern Colors (Dark) -->
+    <color name="success">#34D399</color>
+    <color name="warning">#FCD34D</color>
+    <color name="info">#93C5FD</color>
+    
+    <!-- Beautiful Gradient Colors (Dark) -->
+    <color name="gradient_start">#38BDF8</color>
+    <color name="gradient_end">#22D3EE</color>
+    <color name="gradient_secondary_start">#FB923C</color>
+    <color name="gradient_secondary_end">#FB7185</color>
+    <color name="gradient_tertiary_start">#34D399</color>
+    <color name="gradient_tertiary_end">#6EE7B7</color>
+    
+    <!-- Card Colors (Dark) -->
+    <color name="card_background">#1E293B</color>
+    <color name="card_elevated">#334155</color>
+    <color name="card_stroke">#475569</color>
+    
+    <!-- Favorite Item Colors (Dark) -->
+    <color name="favorite_item_background">#1E293B</color>
+    <color name="favorite_item_background_pressed">#0369A1</color>
+    <color name="favorite_item_stroke">#475569</color>
+    <color name="favorite_item_shadow">#38BDF8</color>
+    
+    <!-- Bottom Navigation Colors (Dark) -->
+    <color name="bottom_nav_background">#0F172A</color>
+    <color name="bottom_nav_item_selected">#0C4A6E</color>
+    <color name="bottom_nav_item_unselected">#64748B</color>
+    <color name="bottom_nav_ripple">#1E293B</color>
+    
+    <!-- Accent Colors (Dark) -->
+    <color name="accent_blue">#93C5FD</color>
+    <color name="accent_purple">#C4B5FD</color>
+    <color name="accent_pink">#F9A8D4</color>
+    <color name="accent_yellow">#FCD34D</color>
+    <color name="accent_teal">#5EEAD4</color>
 </resources> 

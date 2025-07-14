@@ -49,11 +49,7 @@
         android:paddingEnd="24dp"
         android:clickable="true"
         android:layout_marginTop="2dp"
-        app:itemBackground="@drawable/bottom_nav_item_background_custom"
-        app:itemIconTint="?attr/colorOnSurface"
-        app:itemTextColor="?attr/colorOnSurface"
         app:labelVisibilityMode="labeled"
-
         app:itemActiveIndicatorStyle="@style/NoActiveIndicator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

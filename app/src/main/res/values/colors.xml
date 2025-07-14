@@ -1,37 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Colors -->
-    <color name="primary">#7F8CAA</color>
+    <!-- Modern Primary Colors - Ocean Blue Gradient -->
+    <color name="primary">#0EA5E9</color>
     <color name="onPrimary">#FFFFFF</color>
-    <color name="primaryContainer">#B2C6D5</color>
-    <color name="onPrimaryContainer">#3F4A5A</color>
+    <color name="primaryContainer">#E0F2FE</color>
+    <color name="onPrimaryContainer">#0C4A6E</color>
 
-    <!-- Secondary Colors -->
-    <color name="secondary">#99BC85</color>
+    <!-- Modern Secondary Colors - Coral Orange -->
+    <color name="secondary">#9A7E6F</color>
     <color name="onSecondary">#FFFFFF</color>
-    <color name="secondaryContainer">#AEC8A4</color>
-    <color name="onSecondaryContainer">#3F7D58</color>
+    <color name="secondaryContainer">#FED7AA</color>
+    <color name="onSecondaryContainer">#9A3412</color>
 
-    <!-- Tertiary Colors -->
-    <color name="tertiary">#C599B6</color>
+    <!-- Modern Tertiary Colors - Mint Green -->
+    <color name="tertiary">#10B981</color>
     <color name="onTertiary">#FFFFFF</color>
-    <color name="tertiaryContainer">#EDE4F1</color>
-    <color name="onTertiaryContainer">#A35C7A</color>
+    <color name="tertiaryContainer">#D1FAE5</color>
+    <color name="onTertiaryContainer">#064E3B</color>
 
-    <!-- Additional Essential Colors -->
-    <color name="surface">#F2F3F6</color>
-    <color name="onSurface">#3F4A5A</color>
+    <!-- Modern Surface Colors -->
+    <color name="surface">#F8FAFC</color>
+    <color name="onSurface">#0F172A</color>
     <color name="background">#FFFFFF</color>
-    <color name="onBackground">#3F4A5A</color>
-    <color name="error">#FF6F6F</color>
+    <color name="onBackground">#0F172A</color>
+    <color name="error">#F95454</color>
 
-    <!-- Theme Required Colors -->
-    <color name="surfaceVariant">#EDF0F5</color>
-    <color name="onSurfaceVariant">#7F8CAA</color>
-    <color name="surfaceContainer">#F5F7FA</color>
+    <!-- Modern Theme Required Colors -->
+    <color name="surfaceVariant">#F1F5F9</color>
+    <color name="onSurfaceVariant">#64748B</color>
+    <color name="surfaceContainer">#FFFFFF</color>
     <color name="onError">#FFFFFF</color>
-    <color name="errorContainer">#FE7743</color>
-    <color name="onErrorContainer">#FFFFFF</color>
-    <color name="outline">#ADB2D4</color>
-    <color name="outlineVariant">#D4D8E2</color>
+    <color name="errorContainer">#FEF2F2</color>
+    <color name="onErrorContainer">#991B1B</color>
+    <color name="outline">#CBD5E1</color>
+    <color name="outlineVariant">#E2E8F0</color>
+
+    <!-- Additional Modern Colors -->
+    <color name="success">#10B981</color>
+    <color name="warning">#F59E0B</color>
+    <color name="info">#3B82F6</color>
+    
+    <!-- Beautiful Gradient Colors -->
+    <color name="gradient_start">#0EA5E9</color>
+    <color name="gradient_end">#06B6D4</color>
+    <color name="gradient_secondary_start">#F97316</color>
+    <color name="gradient_secondary_end">#FB7185</color>
+    <color name="gradient_tertiary_start">#10B981</color>
+    <color name="gradient_tertiary_end">#34D399</color>
+    
+    <!-- Card Colors -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_elevated">#FFFFFF</color>
+    <color name="card_stroke">#E2E8F0</color>
+    
+    <!-- Favorite Item Colors -->
+    <color name="favorite_item_background">#F8FAFC</color>
+    <color name="favorite_item_background_pressed">#E0F2FE</color>
+    <color name="favorite_item_stroke">#E2E8F0</color>
+    <color name="favorite_item_shadow">#0EA5E9</color>
+    
+    <!-- Bottom Navigation Colors -->
+    <color name="bottom_nav_background">#FFFFFF</color>
+    <color name="bottom_nav_item_selected">#0369A1</color>
+    <color name="bottom_nav_item_unselected">#94A3B8</color>
+    <color name="bottom_nav_ripple">#0C4A6E</color>
+    
+    <!-- Accent Colors -->
+    <color name="accent_blue">#3B82F6</color>
+    <color name="accent_purple">#8B5CF6</color>
+    <color name="accent_pink">#EC4899</color>
+    <color name="accent_yellow">#F59E0B</color>
+    <color name="accent_teal">#14B8A6</color>
+
+    <!-- Bottom Navigation Custom BG & Ripple -->
+    <color name="bottom_nav_item_selected_bg">#20E0F2FE</color>
+    <color name="bottom_nav_ripple_light">#20E0F2FE</color>
 </resources>
