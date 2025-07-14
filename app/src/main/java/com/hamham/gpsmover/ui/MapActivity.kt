@@ -74,11 +74,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     private var xposedDialog: MaterialAlertDialogBuilder? = null
     private lateinit var alertDialog: MaterialAlertDialogBuilder
     private lateinit var dialog: androidx.appcompat.app.AlertDialog
-    private var searchHint: String = "Enter coordinates (lat, lng)"
     private val favoritesImportExport by lazy { FavoritesImportExport(this) }
     private val IMPORT_REQUEST_CODE = 1001
     private val EXPORT_REQUEST_CODE = 1002
-    private var exportJsonString: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -196,32 +194,42 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         showMapPage()
     }
 
-    private fun navigateToFavoritesPage() {
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        if (bottomNavigation.selectedItemId != R.id.navigation_favorites) {
-            bottomNavigation.selectedItemId = R.id.navigation_favorites
-        }
-        showFavoritesPage()
-    }
 
-    private fun navigateToSettingsPage() {
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        if (bottomNavigation.selectedItemId != R.id.navigation_settings) {
-            bottomNavigation.selectedItemId = R.id.navigation_settings
-        }
-        showSettingsPage()
-    }
     
 
 
     private fun showMapPage() {
         currentPage = "map"
-        findViewById<View>(R.id.map_container).visibility = View.VISIBLE
-        findViewById<View>(R.id.favorites_page).visibility = View.GONE
-        findViewById<View>(R.id.settings_page).visibility = View.GONE
+        val mapContainer = findViewById<View>(R.id.map_container)
+        val favoritesPage = findViewById<View>(R.id.favorites_page)
+        val settingsPage = findViewById<View>(R.id.settings_page)
+        
+        // Fade out other pages
+        favoritesPage.animate()
+            .alpha(0f)
+            .setDuration(300)
+            .withEndAction {
+                favoritesPage.visibility = View.GONE
+            }
+            .start()
+            
+        settingsPage.animate()
+            .alpha(0f)
+            .setDuration(300)
+            .withEndAction {
+                settingsPage.visibility = View.GONE
+            }
+            .start()
+        
+        // Fade in map page
+        mapContainer.visibility = View.VISIBLE
+        mapContainer.alpha = 0f
+        mapContainer.animate()
+            .alpha(1f)
+            .setDuration(300)
+            .start()
         
         // Ensure FABs are visible on map page
-        val mapContainer = findViewById<View>(R.id.map_container)
         mapContainer.findViewById<View>(R.id.start).visibility = View.VISIBLE
         mapContainer.findViewById<View>(R.id.stop).visibility = if (viewModel.isStarted) View.VISIBLE else View.GONE
         mapContainer.findViewById<View>(R.id.add_fav_fab).visibility = View.VISIBLE
@@ -232,12 +240,36 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
 
     private fun showFavoritesPage() {
         currentPage = "favorites"
-        findViewById<View>(R.id.map_container).visibility = View.GONE
-        findViewById<View>(R.id.favorites_page).visibility = View.VISIBLE
-        findViewById<View>(R.id.settings_page).visibility = View.GONE
+        val mapContainer = findViewById<View>(R.id.map_container)
+        val favoritesPage = findViewById<View>(R.id.favorites_page)
+        val settingsPage = findViewById<View>(R.id.settings_page)
+        
+        // Fade out other pages
+        mapContainer.animate()
+            .alpha(0f)
+            .setDuration(300)
+            .withEndAction {
+                mapContainer.visibility = View.GONE
+            }
+            .start()
+            
+        settingsPage.animate()
+            .alpha(0f)
+            .setDuration(300)
+            .withEndAction {
+                settingsPage.visibility = View.GONE
+            }
+            .start()
+        
+        // Fade in favorites page
+        favoritesPage.visibility = View.VISIBLE
+        favoritesPage.alpha = 0f
+        favoritesPage.animate()
+            .alpha(1f)
+            .setDuration(300)
+            .start()
         
         // Hide FABs on favorites page
-        val mapContainer = findViewById<View>(R.id.map_container)
         mapContainer.findViewById<View>(R.id.start).visibility = View.GONE
         mapContainer.findViewById<View>(R.id.stop).visibility = View.GONE
         mapContainer.findViewById<View>(R.id.add_fav_fab).visibility = View.GONE
@@ -248,12 +280,36 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
 
     private fun showSettingsPage() {
         currentPage = "settings"
-        findViewById<View>(R.id.map_container).visibility = View.GONE
-        findViewById<View>(R.id.favorites_page).visibility = View.GONE
-        findViewById<View>(R.id.settings_page).visibility = View.VISIBLE
+        val mapContainer = findViewById<View>(R.id.map_container)
+        val favoritesPage = findViewById<View>(R.id.favorites_page)
+        val settingsPage = findViewById<View>(R.id.settings_page)
+        
+        // Fade out other pages
+        mapContainer.animate()
+            .alpha(0f)
+            .setDuration(300)
+            .withEndAction {
+                mapContainer.visibility = View.GONE
+            }
+            .start()
+            
+        favoritesPage.animate()
+            .alpha(0f)
+            .setDuration(300)
+            .withEndAction {
+                favoritesPage.visibility = View.GONE
+            }
+            .start()
+        
+        // Fade in settings page
+        settingsPage.visibility = View.VISIBLE
+        settingsPage.alpha = 0f
+        settingsPage.animate()
+            .alpha(1f)
+            .setDuration(300)
+            .start()
         
         // Hide FABs on settings page
-        val mapContainer = findViewById<View>(R.id.map_container)
         mapContainer.findViewById<View>(R.id.start).visibility = View.GONE
         mapContainer.findViewById<View>(R.id.stop).visibility = View.GONE
         mapContainer.findViewById<View>(R.id.add_fav_fab).visibility = View.GONE
@@ -278,24 +334,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         
-        // Add 3dp spacing between items
-        recyclerView.addItemDecoration(object : androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(
-                outRect: android.graphics.Rect,
-                view: View,
-                parent: androidx.recyclerview.widget.RecyclerView,
-                state: androidx.recyclerview.widget.RecyclerView.State
-            ) {
-                val position = parent.getChildAdapterPosition(view)
-                if (position != androidx.recyclerview.widget.RecyclerView.NO_POSITION) {
-                    // Add 3dp bottom margin to all items except the last one
-                    if (position < parent.adapter?.itemCount?.minus(1) ?: 0) {
-                        outRect.bottom = (3 * resources.displayMetrics.density).toInt()
-                    }
-                }
-            }
-        })
-        
         recyclerView.adapter = favListAdapter
 
         // Setup drag and drop for MapActivity
@@ -306,13 +344,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         Log.d("MapActivity", "ItemTouchHelper attached to RecyclerView")
 
         favListAdapter.onItemClick = { favourite ->
-            // Add haptic feedback to confirm the click
-            val view = findViewById<View>(R.id.favorites_page)
-            view.performHapticClick()
             
             // Add a very short delay to show the clicked item, then process and navigate
             lifecycleScope.launch {
-                delay(200) // 200ms delay to show the clicked item
+                delay(100) // 100ms delay to show the clicked item
                 
                 // Process the favorite selection
                 favourite.let {
@@ -520,16 +555,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         }
     }
 
-    private fun moveMapToNewLocation(moveNewLocation: Boolean) {
-        if (moveNewLocation) {
-            mLatLng = LatLng(lat, lon)
-            mLatLng.let { latLng ->
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng!!, 12.0f))
-                mMarker?.apply {
-                    position = latLng
-                    isVisible = true
-                    showInfoWindow()
-                }
+    private fun moveMapToNewLocation() {
+        mLatLng = LatLng(lat, lon)
+        mLatLng?.let { latLng ->
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f))
+            mMarker?.apply {
+                position = latLng
+                isVisible = true
+                showInfoWindow()
             }
         }
     }
@@ -537,7 +570,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     override fun onResume() {
         super.onResume()
         viewModel.updateXposedState()
-        // Remove syncNavigationWithVisiblePage() call to prevent conflicts with navigation listener
     }
 
 
@@ -608,13 +640,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         }, duration)
     }
     
-    private fun createRoundedBackground(color: Int): android.graphics.drawable.GradientDrawable {
-        return android.graphics.drawable.GradientDrawable().apply {
-            shape = android.graphics.drawable.GradientDrawable.RECTANGLE
-            cornerRadius = resources.getDimensionPixelSize(R.dimen.message_bar_radius).toFloat()
-            setColor(color)
-        }
-    }
+
 
     private fun exportFavorites() {
         lifecycleScope.launch {
@@ -624,7 +650,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
                 return@launch
             }
             // Prepare JSON string for export
-            exportJsonString = com.google.gson.Gson().toJson(favorites)
+            val exportJsonString = com.google.gson.Gson().toJson(favorites)
             
             // Create intent to choose file save location
             val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
@@ -654,7 +680,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
                         viewModel.replaceAllFavourites(importedFavorites)
                         showFavoritesMessageBar("Imported ${importedFavorites.size} favorites", SnackbarType.SUCCESS)
                         // Navigate to favorites page to show the imported items
-                        navigateToFavoritesPage()
+                        showFavoritesPage()
                     } else {
                         showFavoritesMessageBar("Failed to import favorites", SnackbarType.ERROR)
                     }
@@ -662,7 +688,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
             }
         } else if (requestCode == EXPORT_REQUEST_CODE && resultCode == RESULT_OK) {
             data?.data?.let { uri ->
-                exportJsonString?.let { json ->
+                lifecycleScope.launch {
+                    val favorites = viewModel.allFavList.first()
+                    val json = com.google.gson.Gson().toJson(favorites)
                     try {
                         contentResolver.openOutputStream(uri)?.use { outputStream ->
                             outputStream.write(json.toByteArray())
@@ -841,7 +869,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
                     if (lat in -90.0..90.0 && lng in -180.0..180.0) {
                         this.lat = lat
                         this.lon = lng
-                        moveMapToNewLocation(true)
+                        moveMapToNewLocation()
                         // Clear search text after successful search
                         val mapContainer = findViewById<View>(R.id.map_container)
                         mapContainer.findViewById<EditText>(R.id.search_edit_text).text?.clear()
@@ -863,7 +891,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
                                     is SearchProgress.Complete -> {
                                         lat = result.lat
                                         lon = result.lon
-                                        moveMapToNewLocation(true)
+                                        moveMapToNewLocation()
                                         val mapContainer = findViewById<View>(R.id.map_container)
                                         mapContainer.findViewById<EditText>(R.id.search_edit_text).text?.clear()
                                     }
@@ -888,7 +916,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
                                     is SearchProgress.Complete -> {
                                         lat = result.lat
                                         lon = result.lon
-                                        moveMapToNewLocation(true)
+                                        moveMapToNewLocation()
                                         val mapContainer = findViewById<View>(R.id.map_container)
                                         mapContainer.findViewById<EditText>(R.id.search_edit_text).text?.clear()
                                     }

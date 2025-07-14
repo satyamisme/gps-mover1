@@ -9,8 +9,6 @@
         <item name="itemIconSize">25dp</item>
         <item name="itemPaddingTop">8dp</item>
         <item name="itemPaddingBottom">8dp</item>
-        <item name="android:focusable">false</item>
-        <item name="android:focusableInTouchMode">false</item>
     </style>
 
     <style name="FavoritesHeaderTitle" parent="TextAppearance.Material3.TitleLarge">
